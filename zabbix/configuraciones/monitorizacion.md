@@ -66,9 +66,9 @@ Ve a:
 Recopilación de datos → Equipos → cliente-linux-01 → Métricas → Crear métrica
 ```
 
-![1](..\imagenes\monitorizacionservicios\1.png)
+![1](../imagenes/monitorizacionservicios/1.png)
 
-
+zabbix/imagenes/monitorizacionservicios/1.png
 
 Configura:
 
@@ -80,11 +80,11 @@ Tipo de información: Numérico sin signo
 Intervalo de actualización: 30s
 ```
 
-![2](..\imagenes\monitorizacionservicios\2.png)
+![2](../imagenes/monitorizacionservicios/2.png)
 
 Guarda.
 
-![pingclientelinux](..\imagenes\monitorizacionservicios\pingclientelinux.png)
+![pingclientelinux](../imagenes/monitorizacionservicios/pingclientelinux.png)
 
 
 ---
@@ -106,7 +106,7 @@ Expresión:
 last(/cliente-linux-01/icmpping)=0
 ```
 
-![iniciadorclienteli](..\imagenes\monitorizacionservicios\iniciadorcliente1.png)
+![iniciadorclienteli](../imagenes/monitorizacionservicios/iniciadorcliente1.png)
 
 Este iniciador se activará cuando el último valor de `icmpping` sea `0`.
 
@@ -155,7 +155,7 @@ O desconecta temporalmente la red de la VM.
 Monitorización → Problemas → Cliente (linux/windows) no responde a ping
 ```
 
-![problemapingli](..\imagenes\monitorizacionservicios\problemapingli.png)
+![problemapingli](../imagenes/monitorizacionservicios/problemapingli.png)
 ---
 
 # 2. Monitorizar SSH en Linux
@@ -210,9 +210,9 @@ Clave: net.tcp.service[ssh]
 Tipo de información: Numérico sin signo
 Intervalo de actualización: 30s
 ```
-![ssh1](..\imagenes\monitorizacionservicios\ssh1.png)
+![ssh1](../imagenes/monitorizacionservicios/ssh1.png)
 
-![ssh1.2](..\imagenes\monitorizacionservicios\ssh1-2.png)
+![ssh1.2](../imagenes/monitorizacionservicios/ssh1-2.png)
 
 ---
 
@@ -225,7 +225,7 @@ Expresión:
 last(/cliente-linux-01/net.tcp.service[ssh])=0
 ```
 
-![ssh2](..\imagenes\monitorizacionservicios\ssh2.png)
+![ssh2](../imagenes/monitorizacionservicios/ssh2.png)
 
 ---
 
@@ -261,7 +261,7 @@ sudo systemctl stop ssh
 
 Espera 30-60 segundos.
 
-![sshcaido](..\imagenes\monitorizacionservicios\sshcaido.png)
+![sshcaido](../imagenes/monitorizacionservicios/sshcaido.png)
 
 Para recuperarlo:
 
@@ -382,13 +382,13 @@ En Zabbix debería aparecer:
 ```text
 HTTP caído en cliente Linux
 ```
-![http linux caido](..\imagenes\monitorizacionservicios\http-linux-caido.png)
+![http linux caido](../imagenes/monitorizacionservicios/http-linux-caido.png)
 Para recuperarlo:
 
 ```bash
 sudo systemctl start nginx
 ```
-![resuelto http linux caido](..\imagenes\monitorizacionservicios\resuelto-http-linux-caido.png)
+![resuelto http linux caido](../imagenes/monitorizacionservicios/resuelto-http-linux-caido.png)
 ---
 
 ## 3.3. Escenario web para HTTP
@@ -410,7 +410,7 @@ Intervalo de actualización: 1m
 Intentos: 1
 Agente: Zabbix
 ```
-![escenario](..\imagenes\monitorizacionservicios\escenario.png)
+![escenario](../imagenes/monitorizacionservicios/escenario.png)
 Añade un paso:
 
 ```text
@@ -418,7 +418,7 @@ Nombre: pagina
 URL: http://192.168.1.20
 Códigos de estado requeridos: 200
 ```
-![paso escenario web](..\imagenes\monitorizacionservicios\paso-escenario-web.png)
+![paso escenario web](../imagenes/monitorizacionservicios/paso-escenario-web.png)
 Guarda.
 
 ---
@@ -430,7 +430,7 @@ En Zabbix:
 ```text
 Monitorización → Equipos → cliente-linux-01 → Web
 ```
-![compro1](..\imagenes\monitorizacionservicios\compro1.png)
+![compro1](../imagenes/monitorizacionservicios/compro1.png)
 
 ---
 
@@ -453,9 +453,9 @@ La expresión quedará parecida a:
 ```text
 last(/cliente-linux-01/web.test.fail[web cliente linux])<>0
 ```
-![expresion](..\imagenes\monitorizacionservicios\expresion.png)
+![expresion](../imagenes/monitorizacionservicios/expresion.png)
 
-![iniciador](..\imagenes\monitorizacionservicios\iniciador.png)
+![iniciador](../imagenes/monitorizacionservicios/iniciador.png)
 ---
 
 ## Cómo comprobar el escenario web
@@ -467,13 +467,13 @@ paramos el servicio nginx  espera 1 minuto ve a:
 ```text
 Monitorización → Equipos → cliente-linux-01 → Web
 ```
-![fallo web](..\imagenes\monitorizacionservicios\)
+![fallo web](../imagenes/monitorizacionservicios/)
 
 Deberías ver el escenario fallido.
 
 inicia de nuevo el servicio y comprueba
 
-![funciona](..\imagenes\monitorizacionservicios\fallo-web.png)
+![funciona](../imagenes/monitorizacionservicios/fallo-web.png)
 
 ---
 
@@ -532,7 +532,7 @@ Tipo de información: Numérico sin signo
 Intervalo de actualización: 30s
 ```
 
-![metricamdb](..\imagenes\monitorizacionservicios\metricamdb.png)
+![metricamdb](../imagenes/monitorizacionservicios/metricamdb.png)
 
 Uso `tcp,,3306` porque así compruebo directamente el puerto TCP 3306. En las comprobaciones simples de Zabbix se puede indicar servicio, IP y puerto; cuando se usa `tcp`, el puerto es obligatorio. ([zabbix.com][1])
 
@@ -546,7 +546,7 @@ Gravedad: Alta
 Expresión:
 last(/zabbix-server/net.tcp.service[tcp,,3306])=0
 ```
-![iniciadormdb](..\imagenes\monitorizacionservicios\iniciadormdb.png)
+![iniciadormdb](../imagenes/monitorizacionservicios/iniciadormdb.png)
 
 ---
 
@@ -589,9 +589,9 @@ Gravedad: Promedio
 Expresión:
 nodata(/cliente-linux-01/agent.ping,5m)=1
 ```
-![iniz](..\imagenes\monitorizacionservicios\iniz.png)
+![iniz](../imagenes/monitorizacionservicios/iniz.png)
 
-![iniciador win](..\imagenes\monitorizacionservicios\iniciador-win.png)
+![iniciador win](../imagenes/monitorizacionservicios/iniciador-win.png)
 Esto significa: si no llegan datos de la métrica `agent.ping` durante 5 minutos, se activa.
 
 ---
@@ -631,7 +631,7 @@ Resultado correcto:
 ```text
 1
 ```
-![falloagent](..\imagenes\monitorizacionservicios\falloagent.png)
+![falloagent](../imagenes/monitorizacionservicios/falloagent.png)
 ---
 
 # 6. Monitorizar disco
@@ -653,11 +653,11 @@ En Zabbix:
 Monitorización → Datos más recientes → cliente-linux-01
 ```
 utilizacion:
-![utilizacion](..\imagenes\monitorizacionservicios\utilizacion.png)
+![utilizacion](../imagenes/monitorizacionservicios/utilizacion.png)
 
 de manera visual:
 
-![visual](..\imagenes\monitorizacionservicios\visual.png)
+![visual](../imagenes/monitorizacionservicios/visual.png)
 
 ---
 
@@ -729,7 +729,7 @@ En Zabbix mira:
 ```text
 Monitorización → Equipos → cliente-linux-01 → Gráficos
 ```
-![graficos cpu](..\imagenes\monitorizacionservicios\graficos-cpu.png)
+![graficos cpu](../imagenes/monitorizacionservicios/graficos-cpu.png)
 
 ---
 
@@ -741,7 +741,7 @@ Gravedad: Advertencia
 Expresión:
 avg(/cliente-linux-01/system.cpu.util[,user],5m)>80
 ```
-![compr](..\imagenes\monitorizacionservicios\compr.png)
+![compr](../imagenes/monitorizacionservicios/compr.png)
 
 Esto se activaría si la CPU de usuario supera el 80% de media durante 5 minutos.
 

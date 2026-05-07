@@ -25,7 +25,7 @@ HTTP deja de responder → se activa el iniciador → aparece en Problemas → Z
 
 Zabbix llama tipos de medios a los canales por los que envía notificaciones, como correo, SMS, scripts o webhooks. Para que una alerta llegue a un usuario hacen falta tres cosas: una acción que envíe la notificación, un tipo de medio configurado y un medio asignado al usuario.
 
-https://www.zabbix.com/documentation/current/en/manual/config/notifications/media?utm_source=chatgpt.com
+https://www.zabbix.com/documentation/current/en/manual/config/notifications/
 
 ---
 

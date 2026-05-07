@@ -830,17 +830,4 @@ C: Free space
 | RAM Linux      | `vm.memory.size[...]`        | `free -h`                                             | `stress-ng --vm 1 --vm-bytes 512M --timeout 60s` |
 
 ---
-
-
-
-# Fuentes utilizadas
-
-* Zabbix: tipos de métrica con agente y uso de Zabbix Agent / Agent 2. ([zabbix.com][4])
-* Zabbix: comprobaciones simples y uso de `net.tcp.service[]`. ([zabbix.com][1])
-* Zabbix: monitorización web mediante escenario webs. ([zabbix.com][3])
-* Zabbix: expresiones de iniciadores. ([zabbix.com][2])
-
-[1]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/ "5 Simple checks"
-[2]: https://www.zabbix.com/documentation/current/en/manual/config/iniciadores/ "2 Iniciador expression"
-[3]: https://www.zabbix.com/documentation/current/en/manual/ "9 Web monitoring"
 [4]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/zabbix_agent?utm_source=chatgpt.com "1 Zabbix agent"

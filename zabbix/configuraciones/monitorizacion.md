@@ -840,7 +840,7 @@ C: Free space
 * Zabbix: monitorización web mediante escenario webs. ([zabbix.com][3])
 * Zabbix: expresiones de iniciadores. ([zabbix.com][2])
 
-[1]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/simple_checks?utm_source=chatgpt.com "5 Simple checks"
-[2]: https://www.zabbix.com/documentation/current/en/manual/config/iniciadores/expression?utm_source=chatgpt.com "2 Iniciador expression"
-[3]: https://www.zabbix.com/documentation/current/en/manual/web_monitoring?utm_source=chatgpt.com "9 Web monitoring"
+[1]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/ "5 Simple checks"
+[2]: https://www.zabbix.com/documentation/current/en/manual/config/iniciadores/ "2 Iniciador expression"
+[3]: https://www.zabbix.com/documentation/current/en/manual/ "9 Web monitoring"
 [4]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/zabbix_agent?utm_source=chatgpt.com "1 Zabbix agent"

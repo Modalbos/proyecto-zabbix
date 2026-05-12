@@ -1,4 +1,4 @@
-# configurar alertas
+# Configuración de alertas en Zabbix
 
 esta es una de las partes mas importantes,
 ya que zabbix nos avisara no solo con metricas en la web sino que ademas podremos estar al tanto de todo en cualquier momento con mensajes al movil (telegram) o al correo
@@ -69,11 +69,7 @@ create new bot
 
 copiamos el token
 
-mi token
-
-```text
-8430463255:AAEXZ9M1Yu9R6tpHnZlPASVLKE8kh9ySKLc
-```
+TOKEN_DEL_BOT
 
 para poder sacar el chat id debemos hablarle al bot con un mensaje cualquiera
 
@@ -89,12 +85,12 @@ cambiamos el token por el nuestro y recuerda dejar bot antes del token
 
 y buscamos algo como el chat id
 
-![chat-id](../imagenes/alertas/chat-id.png)
+![chat-id](../imagenes/alertas/6.jpeg)
 
 mi chat id
 
 ```json
-"chat":{"id":1163783694}
+"chat":{"id":id_del_chat}
 ```
 
 ---
@@ -129,10 +125,10 @@ api_token: pegamos el token
 ```
 
 ```text
-api_chat_id: lo dejamos sin tocar significa que Zabbix usará el valor que pongas luego en el usuario.
+api_chat_id: lo dejamos sin tocar significa que Zabbix usará el valor que pongas luego en el usuario al añadir el medio.
 ```
 
-![editado](../imagenes/alertas/editado.png)
+![editar para que no se vea el token ni el id](../imagenes/alertas/4.jpeg)
 
 ahora nos vamos a Usuarios → Usuarios → Admin → Medios → agregar
 
@@ -141,13 +137,13 @@ Tipo: Telegram
 Enviar a: tu_chat_id
 ```
 
-esta vez marcare todos los niveles de alerta pero lo mejor seria hacer mas de un bot para diferentes niveles de alerta para poder tenerlo mas organizado
+En este caso marcare todos los niveles de gravedad para comprobar que las notificaciones llegan correctamente. En un entorno real se podrían separar las alertas por gravedad o por tipo de servicio.
 
 y guardamos
 
 podemo probar que llega
 
-![prueba](../imagenes/alertas/prueba.png)
+![editar para quitar id](..\imagenes\alertas\8.jpeg)
 
 ---
 
@@ -158,6 +154,7 @@ ahora toca crear la alerta iremos
 ```text
 Alertas → Acciones → Acciones de iniciador
 ```
+Las acciones de iniciador son las reglas que indican a Zabbix qué debe hacer cuando se genera un problema. En este caso, la acción enviará una notificación al usuario Admin mediante Telegram cuando se active un iniciador.
 
 nueva accion 
 
@@ -219,7 +216,7 @@ Esta parte vamos a dejarla sin tocar por ahora.
 
 pararemos el servicio de zabbix y despues de unos 30-60 segundos deberia llegar
 
-![noti-t1](../imagenes/alertas/noti-t1.png)
+![noti-t1](..\imagenes\alertas\1.jpeg)
 
 algunos que recomiendo comprobar para asegurarte que funcionan todos
 
@@ -266,19 +263,19 @@ Formato de mensaje: HTML
 
 pasos para la contraseña de aplicacion -->  [Pasos para crear la contraseña de aplicación](../configuraciones/contraseña-correo-aplicacion.md)
 
-![medio2](../imagenes/alertas/medio2.png)
+![medio2](...\imagenes\alertas\2.jpeg)
 
 y lo añadimos al usuario
 
-![corr-usu](../imagenes/alertas/corr-usu.png)
+![corr-usu](../imagenes/alertas/5.jpeg)
 
 y hacemos la prueba
 
-![prueba-corre](../imagenes/alertas/prueba-corre.png)
+![prueba-corre](../imagenes/alertas/7.jpeg)
 
 hacemos lo mismo que con telegram respecto a las acciones y luego probamos 
 
-![fun](../imagenes/alertas/fun.png)
+![fun](../imagenes/alertas/3.jpeg)
 
 ---
 
@@ -315,3 +312,7 @@ Ejecuta un script creado por el administrador, por ejemplo un script Bash o Pyth
 **Webhook genérico:**
 
 Permite enviar datos de Zabbix a cualquier API externa compatible.
+
+
+
+Con esta configuración, Zabbix queda preparado para enviar notificaciones automáticas cuando se produzcan incidencias en los hosts o servicios monitorizados. Las alertas por Telegram permiten recibir avisos rápidos en el móvil, mientras que el correo electrónico ofrece un segundo canal de notificación. Durante las pruebas se provocaron fallos controlados en servicios como HTTP, SSH y Zabbix Agent 2, comprobando que Zabbix generaba el problema y enviaba la alerta correctamente.

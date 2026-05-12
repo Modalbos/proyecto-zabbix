@@ -247,8 +247,7 @@ Y añadimos la contraseña de la base de datos:
 ```bash
 DBPassword=adminmariadb
 ```
-
-![Configuración de Zabbix Server](../imagenes/conf-servidor/nginx-conf.png)
+![Configuración de Zabbix Server](../imagenes/conf-servidor/zabbix-conf.png)
 
 ---
 
@@ -267,7 +266,7 @@ listen 80;
 server_name 192.168.1.10;
 ```
 
-![Configuración de Nginx](../imagenes/conf-servidor/zabbix-conf.png)
+![Configuración de Nginx](../imagenes/conf-servidor/nginx-conf.png)
 
 ---
 
@@ -444,11 +443,11 @@ ss -tulpn | grep ':80'
 
 
 
-# Monitorizar el propio servidor
+## 15. Monitorizar el propio servidor
 
-a mi me gusta tenerlo tambien monitorizado pero no es estrictamente necesario
+También voy a monitorizar el propio servidor Zabbix para comprobar su estado.
 
-# comprobar que el agente está instalado
+### 15.1 comprobar que el agente está instalado
 ya deberia estar instalado pero siempre es bueno comprobar en caso de que no lo instalases antes ya que no siempre es necesario
 
 ```bash
@@ -460,7 +459,7 @@ si no esta activo
 systemctl enable --now zabbix-agent2
 ```
 
-# configuramos el archivo del agente
+### 15.2 configuramos el archivo del agente
 
 
 ```bash
@@ -472,7 +471,7 @@ dentro buscar y modificar las siguientes lineas
 ```text
 Server=127.0.0.1
 ServerActive=127.0.0.1
-Hostname=Zabbix server  
+Hostname=zabbix-server  
 ```
 en este caso solo cambiamos el hostname por el del servidor
 
@@ -483,10 +482,10 @@ systemctl restart zabbix-agent2
 systemctl status zabbix-agent2
 ```
 
-# En el panel web nos vamos a los siguientes
+### 15.3 En el panel web nos vamos a los siguientes
 
 ```text
-Data collection → Hosts
+Recopilación de datos → Equipos
 ```
 
 configuramos su interfaz
@@ -504,12 +503,12 @@ Port: 10050
 
 como es el propio servidor lo dejamos con `127.0.0.1`
 
-## plantillas
+### 15.4 plantillas
 
 En el mismo host ve a:
 
 ```text
-Templates
+plantillas
 ```
 
 
@@ -530,13 +529,13 @@ Pero por ahora recomiendo usar la primera es más fácil para comprobar que func
 Guarda los cambios con:
 
 ```text
-Update
+actualizar
 ```
 
-# comprobar que funciona
+### 15.5 comprobar que funciona
 
 ```text
-Data collection → Hosts
+Recopilación de datos → Equipos
 ```
 
 
@@ -549,7 +548,7 @@ Si aparece verde, perfecto: el servidor ya se está monitorizando.
 mira en:
 
 ```text
-Monitoring → Latest data
+Monitorización → Datos más recientes
 ```
 
 Filtra por host:
@@ -572,7 +571,7 @@ System uptime
 También puedes ir a:
 
 ```text
-Monitoring → Hosts
+Monitorización → Equipos
 ```
 
 y tienes varias opciones con graficos y mas
@@ -631,7 +630,7 @@ zabbix-server
 tail -f /var/log/zabbix/zabbix_agent2.log
 ```
 
-## miira el log del servidor
+## mirar el log del servidor
 
 ```bash
 tail -f /var/log/zabbix/zabbix_server.log

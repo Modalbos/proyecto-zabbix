@@ -1,5 +1,8 @@
-lo principal sera configurar su ip 
+# Configuración del cliente Linux en Zabbix
 
+En este apartado se configura una máquina Ubuntu Server como cliente Linux monitorizado por Zabbix. Para ello se establecerá una IP fija, se instalará Zabbix Agent 2 y se añadirá el equipo al servidor Zabbix.
+
+## 1. Configuración de IP fija con Netplan 
 en ubuntu server utilizan netplan asi que modificaremos este archivo 50-cloud-init.yaml
 
 en caso de aparecer otro pues modificas ese que hay
@@ -11,6 +14,7 @@ sudo nano /etc/netplan/50-cloud-init.yaml
 
 y la configuracion debe ser algo asi
 
+```yaml
 network:
   version: 2
   renderer: networkd
@@ -26,20 +30,22 @@ network:
         addresses:
           - 192.168.1.1
           - 8.8.8.8
+```
+en yaml ten cuidado con los espacios y las tabulaciones ya que puede que no se aplique nada por esos pequeños detalles 
 
-en yaml ten cuidado con los espacios y las tabulaciones 
-
-ahora aplicaremos aunque con un reboot tambien se puede
-
+ahora lo aplicaremos aunque a veces es necesario hacer un reboot 
+```bash
 sudo netplan try
-
-
 sudo netplan apply
-
-una vez configurada actualizar y empezar a instalar paquetes
-
+```
+una vez configurada debemos actualizar y empezar a instalar paquetes
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
 a parte de la ip debemos cambiar el hostname y los hosts
 
+## 2. Cambio de hostname y hosts
 ```bash
 sudo hostnamectl set-hostname cliente-linux-01
 ```
@@ -63,11 +69,14 @@ hostname -I
 
 ![alt text](../imagenes/con-linux/a.png)
 
+comprobamos que el cliente puede comunicarse con el servidor
+
+![Comprobación de conectividad con el servidor Zabbix](../imagenes/con-linux/ping-cli.png)
 ---
 
-yo partir de aqui lo hice conectado por ssh ya que me era mas comodo pero ya eso depende de ti
+yo partir de aqui lo hice conectado por ssh ya que me era mas comodo hacerlo desde un solo terminal y no cambiar todo el rato 
 
-# instalar repositorio de Zabbix en el cliente Linux
+## 3. Instalación del repositorio de Zabbix
 
 En el cliente Linux, primero comprueba qué sistema tienes:
 
@@ -93,7 +102,7 @@ sudo apt update
 
 ---
 
-# instalar Zabbix Agent 2 en el cliente
+## 4. instalar Zabbix Agent 2 en el cliente
 
 En el cliente:
 
@@ -112,7 +121,7 @@ sudo systemctl status zabbix-agent2
 
 ---
 
-# configurar el agente del cliente
+# 5. configurar el agente del cliente
 
 Edita:
 
@@ -139,9 +148,13 @@ sudo systemctl status zabbix-agent2
 
 ---
 
-# abrir firewall en el cliente Linux
+# 6. abrir firewall en el cliente Linux
 
-yo no tuve que instalar el ufw en ubuntu-server
+lo instalamos en caso de no tenerlo
+
+```bash
+sudo apt install -y ufw
+```
 
 ```bash
 sudo ufw status
@@ -162,11 +175,15 @@ sudo ufw allow 22/tcp
 ```
 ![alt text](../imagenes/con-linux/c.png)
 
+debemos comprobar que escucha por el 10050
 
+```bash
+ss -tulpn | grep 10050
+```
 
 ---
 
-# comprobar desde el servidor que el agente responde
+# 7. comprobar desde el servidor que el agente responde
 
 En el servidor Zabbix instala la herramienta `zabbix-get`:
 
@@ -188,15 +205,18 @@ Resultado correcto: 1
 También puedes probar:
 
 ```bash
-zabbix_get -s 192.168.1.20 -k system.hostname
+zabbix_get -s IP_DEL_CLIENTE -k system.hostname      
 ```
 
 ![comp2](../imagenes/con-linux/e.png)
 
 
+
+`zabbix_get` permite consultar manualmente una clave del agente Zabbix desde el servidor. Si devuelve `1` con la clave `agent.ping`, significa que el agente responde correctamente.
+
 ---
 
-# crear el host en Zabbix Web
+# 8. crear el host en Zabbix Web
 
 
 Ve a:
@@ -220,11 +240,11 @@ interfaces → agregar
 
 
 ```text
-Type: Agent
-IP address: 192.168.1.20 (ip del cliente)
-DNS name: vacío
-Connect to: IP
-Port: 10050
+Tipo: Agente
+Dirección IP: 192.168.1.20 (ip del cliente)
+Nombre DNS: vacío
+Conectar a: IP
+Puerto: 10050
 ```
 en plantillas:
 
@@ -236,16 +256,16 @@ Linux by Zabbix agent
 
 ---
 
-# comprobar que funciona
+# 9. comprobar que funciona
 
 El icono **ZBX** del cliente debería ponerse verde.
 
-![alt text](../imagenes/con-linux/g.png)
+![Comprobación de hostname e IP del cliente Linux](../imagenes/con-linux/g.png)
 
 Después ve a:
 
 ```text
-Monitoring → Latest data
+Monitorización → Datos más recientes
 ```
 
 Filtra por:
@@ -259,7 +279,7 @@ cliente-linux-01
 ![alt text](../imagenes/con-linux/i.png)
 ---
 
-# prueba real para la memoria
+# 10. prueba real
 
 En el cliente Linux ejecuta:
 
@@ -268,6 +288,8 @@ sudo systemctl stop zabbix-agent2
 ```
 
 Espera unos minutos y revisa en Zabbix si aparece problema de agente no disponible o falta de datos.
+
+Al detener el agente, Zabbix deja de recibir datos del cliente y tras unos minutos puede aparecer un problema relacionado con la disponibilidad del agente. Cuando lo iniciamos de nuevo se resuelve el problema automaticamente
 
 ![alt text](../imagenes/con-linux/j.png)
 
@@ -285,3 +307,6 @@ stress-ng --cpu 2 --timeout 60s
 ```
 
 ![alt text](../imagenes/con-linux/k.png)
+
+
+Con esta configuración, el cliente Linux queda integrado en el sistema de monitorización Zabbix. El servidor puede consultar el agente y recibir métricas del sistema como CPU, memoria, disco, red y tiempo de actividad. Además, se comprobó el funcionamiento del agente mediante `zabbix_get` y se realizó una prueba real deteniendo temporalmente el servicio `zabbix-agent2`.

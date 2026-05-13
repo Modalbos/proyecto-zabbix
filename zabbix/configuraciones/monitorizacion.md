@@ -1,7 +1,7 @@
 # Monitorizar servicios de nuestros clientes
 ahora enseñare algunos servicios y como monitorizarlos ya que lo mas importante son los servicios que tenemos en cada equipo
 
-hare algunos pero se pueden muchisimos mas a parte de estos que hare yo
+Se configurarán algunos servicios principales, aunque Zabbix permite monitorizar muchos más.
 
 
 ```text
@@ -26,11 +26,11 @@ Zabbix puede hacer comprobaciones mediante agente, comprobaciones simples, escen
 
 ---
 
-# 1. Monitorizar ping / disponibilidad
+## 1. Monitorizar ping / disponibilidad
 
 Esto sirve para saber si una máquina está encendida y responde en red.
 
-## Qué monitorizar
+### Qué monitorizar
 
 Equipos:
 
@@ -58,7 +58,7 @@ Significado:
 
 ---
 
-## Cómo crearlo en Zabbix
+### Cómo crearlo en Zabbix
 
 Ve a:
 
@@ -68,7 +68,6 @@ Recopilación de datos → Equipos → cliente-linux-01 → Métricas → Crear 
 
 ![1](../imagenes/monitorizacionservicios/1.png)
 
-zabbix/imagenes/monitorizacionservicios/1.png
 
 Configura:
 
@@ -89,7 +88,7 @@ Guarda.
 
 ---
 
-## Iniciador recomendado
+### Iniciador recomendado
 
 Ve a:
 
@@ -114,16 +113,20 @@ Las expresiones de iniciadores en Zabbix usan funciones como `last()`, `min()`, 
 
 ---
 
-## Cómo comprobarlo manualmente
+### Cómo comprobarlo manualmente
 
 ping desde fuera
 
 linux:
-
+```bash
+ping -c 4 192.168.1.10
+```
 windows:
-
-
+```powershell
+ping 192.168.1.10
+```  
 servidor:
+```bash
 
 En Zabbix:
 
@@ -145,9 +148,9 @@ Debe valer:
 
 ---
 
-## Cómo provocar el fallo
+### Cómo provocar el fallo
 
-Apaga el el objetivo
+Apaga el equipo objetivo
 
 O desconecta temporalmente la red de la VM.
 
@@ -156,13 +159,13 @@ Monitorización → Problemas → Cliente (linux/windows) no responde a ping
 ```
 
 ![problemapingli](../imagenes/monitorizacionservicios/problemapingli.png)
----
 
-# 2. Monitorizar SSH en Linux
+
+## 2. Monitorizar SSH en Linux
 
 Esto sirve para comprobar que el servicio SSH está disponible.
 
-## Qué monitorizar
+### Qué monitorizar
 
 Servicio:
 
@@ -193,7 +196,7 @@ ssh usuario@192.168.1.20
 ```
 ---
 
-## Crear métrica en Zabbix
+### Crear métrica en Zabbix
 
 Ve a:
 
@@ -216,7 +219,7 @@ Intervalo de actualización: 30s
 
 ---
 
-## Crear iniciador
+### Crear iniciador
 
 ```text
 Nombre: SSH caído en cliente Linux
@@ -229,7 +232,7 @@ last(/cliente-linux-01/net.tcp.service[ssh])=0
 
 ---
 
-## Cómo comprobarlo
+### Cómo comprobarlo
 
 En Zabbix:
 
@@ -251,7 +254,7 @@ Debe valer:
 
 ---
 
-## Cómo provocar el fallo
+### Cómo provocar el fallo
 
 En el cliente Linux:
 
@@ -271,7 +274,7 @@ sudo systemctl start ssh
 
 ---
 
-# 3. Monitorizar HTTP en Linux
+## 3. Monitorizar HTTP en Linux
 
 | Método                  | Qué comprueba                            | Uso recomendado          |
 | ----------------------- | ---------------------------------------- | ------------------------ |
@@ -282,7 +285,7 @@ Zabbix soporta monitorización web HTTP y HTTPS mediante escenarios web. Estos p
 
 ---
 
-## 3.1. Instalar Nginx en el cliente Linux
+### 3.1. Instalar Nginx en el cliente Linux
 
 En `cliente-linux-01`:
 
@@ -308,7 +311,7 @@ http://192.168.1.20
 
 ---
 
-## 3.2. Métrica simple para HTTP
+### 3.2. Métrica simple para HTTP
 
 hacer capturas de las cosas creadas
 
@@ -341,7 +344,7 @@ last(/cliente-linux-01/net.tcp.service[http])=0
 
 ---
 
-## Cómo comprobarlo
+### Cómo comprobarlo
 
 Desde el servidor:
 
@@ -369,7 +372,7 @@ HTTP/1.1 200 OK
 
 ---
 
-## Cómo provocar fallo HTTP
+### Cómo provocar fallo HTTP
 
 En el cliente Linux:
 
@@ -389,9 +392,8 @@ Para recuperarlo:
 sudo systemctl start nginx
 ```
 ![resuelto http linux caido](../imagenes/monitorizacionservicios/resuelto-http-linux-caido.png)
----
 
-## 3.3. Escenario web para HTTP
+### 3.3. Escenario web para HTTP
 
 
 Esto es más “profesional” que solo comprobar el puerto.
@@ -423,7 +425,7 @@ Guarda.
 
 ---
 
-## Qué datos genera
+### Qué datos genera
 
 En Zabbix:
 
@@ -434,7 +436,7 @@ Monitorización → Equipos → cliente-linux-01 → Web
 
 ---
 
-## Iniciador para escenario web
+### Iniciador para escenario web
 
 Puedes crear un iniciador con la métrica de escenario web. El nombre exacto de la métrica puede variar, así que hazlo desde el selector de expresiones.
 
@@ -456,9 +458,9 @@ last(/cliente-linux-01/web.test.fail[web cliente linux])<>0
 ![expresion](../imagenes/monitorizacionservicios/expresion.png)
 
 ![iniciador](../imagenes/monitorizacionservicios/iniciador.png)
----
 
-## Cómo comprobar el escenario web
+
+### Cómo comprobar el escenario web
 
 En el cliente Linux:
 
@@ -467,30 +469,30 @@ paramos el servicio nginx  espera 1 minuto ve a:
 ```text
 Monitorización → Equipos → cliente-linux-01 → Web
 ```
-![fallo web](../imagenes/monitorizacionservicios/)
+![fallo web](../imagenes/monitorizacionservicios/fallo-web.png)
 
 Deberías ver el escenario fallido.
 
 inicia de nuevo el servicio y comprueba
 
-![funciona](../imagenes/monitorizacionservicios/fallo-web.png)
+![funciona](../imagenes/monitorizacionservicios/funciona.png)
 
 ---
 
-# 4. Monitorizar MariaDB
+## 4. Monitorizar MariaDB
 
-Aquí tienes dos niveles.
+tenemos dos niveles diferentes
 
 | Nivel    | Qué comprueba                       |
 | -------- | ----------------------------------- |
 | Básico   | Si el puerto MySQL/MariaDB responde |
 | Avanzado | Métricas internas de MariaDB        |
 
-Para empezar, usa el nivel básico. Luego, si quieres, metemos plantilla específica de MariaDB.
+Para empezar, usare el nivel básico.
 
 ---
 
-## 4.1. Comprobación básica del puerto MariaDB
+### 4.1. Comprobación básica del puerto MariaDB
 
 MariaDB usa normalmente el puerto:
 
@@ -510,11 +512,11 @@ Comprueba si escucha:
 ss -tulpn | grep ':3306'
 ```
 
-Ojo: muchas instalaciones de MariaDB solo escuchan en `127.0.0.1`, y eso está bien si la base de datos está en el mismo servidor como en en nuestro caso.
+Ojo: muchas instalaciones de MariaDB solo escuchan en `127.0.0.1`, y eso está bien si la base de datos está en el mismo servidor como en nuestro caso.
 
 ---
 
-## forma sencilla
+### forma sencilla
 
 Equipo:
 
@@ -538,7 +540,7 @@ Uso `tcp,,3306` porque así compruebo directamente el puerto TCP 3306. En las co
 
 ---
 
-## Iniciador
+### Iniciador
 
 ```text
 Nombre: MariaDB caída en servidor Zabbix
@@ -550,25 +552,20 @@ last(/zabbix-server/net.tcp.service[tcp,,3306])=0
 
 ---
 
-## provocar fallo
+### provocar fallo
 
-paramos el servicio.
+paramos el servicio con systemctl stop mariadb
 
-Importante: esto puede afectar al propio Zabbix porque Zabbix depende de MariaDB. Para una prueba rápida vale, pero no lo dejes parado mucho tiempo lo normal seria que la base estuviera en otra maquina pero en mi caso como es un proyecto para mostrar zabbix con esto me valdra.
+Importante: esto puede afectar al propio Zabbix porque Zabbix depende de MariaDB. Para una prueba rápida vale, pero no lo dejes parado mucho tiempo lo normal seria que la base estuviera en otra maquina pero en mi caso como es un proyecto para mostrar zabbix con esto me valdra, mas adelante muestro como lo hago en otra maquina.
 
-iniciamos el servicio de nuevo
+### comprobar
+![comprobacion-mariadb](../imagenes/monitorizacionservicios/comprobacion-mariadb.png)
 
-## captura de comprobacion
-
-## hacer la segunda forma pero que la base este en otra maquina para mas profesionalidad (recordatorio para chatgpt y para mi)
-
----
-
-# 5. Monitorizar el agente Zabbix
+## 5. Monitorizar el agente Zabbix
 
 Esto sirve para saber si un equipo deja de enviar datos o si el agente está parado.
 
-## En Linux
+### En Linux
 
 En Zabbix, revisa métrica:
 
@@ -579,7 +576,7 @@ suele venir con la plantilla que le pusimos
 
 ---
 
-## Iniciador recomendado
+### Iniciador recomendado
 
 Si no existe ya, puedes crear:
 
@@ -596,7 +593,7 @@ Esto significa: si no llegan datos de la métrica `agent.ping` durante 5 minutos
 
 ---
 
-## Cómo provocar fallo
+### Cómo provocar fallo
 
 En el cliente Linux:
 
@@ -610,10 +607,10 @@ Resultado esperado:
 
 
 
-recuerda iniciar de nnuevo el servicio
----
+recuerda iniciar de nuevo el servicio
 
-## En Windows
+### En Windows
+
 
 Pararlo:
 
@@ -632,9 +629,7 @@ Resultado correcto:
 1
 ```
 ![falloagent](../imagenes/monitorizacionservicios/falloagent.png)
----
-
-# 6. Monitorizar disco
+## 6. Monitorizar disco
 
 Esto normalmente ya lo tienes con las plantillas:
 
@@ -645,7 +640,7 @@ Windows by Zabbix agent
 
 Pero conviene saber comprobarlo.
 
-## Linux
+### Linux
 
 En Zabbix:
 
@@ -661,7 +656,7 @@ de manera visual:
 
 ---
 
-## Iniciador de disco
+### Iniciador de disco
 
 ya viene con la plantilla. pero si quieres uno personalizado por ejemplo:
 
@@ -669,14 +664,15 @@ ya viene con la plantilla. pero si quieres uno personalizado por ejemplo:
 Nombre: Poco espacio libre en / del cliente Linux
 Gravedad: Advertencia
 Expresión: 
-last(/cliente-linux-01/vfs.fs.dependent.size[/,pused])>90 ( esto "vfs.fs.dependent.size" cambia segun tu sistema asi que asegurate de buscar bien cual necesitas )
+last(/cliente-linux-01/vfs.fs.dependent.size[/,pused])>90
 ```
+( esto "vfs.fs.dependent.size" cambia segun tu sistema asi que a clave exacta puede variar según la plantilla y el descubrimiento de sistemas de archivos. Por eso se recomienda seleccionar la métrica desde el constructor de expresiones de Zabbix en lugar de escribirla manualmente. )
 
 Esto se activa si queda menos del 10% libre en `/`.
 
 ---
 
-## Cómo probarlo
+### Cómo probarlo
 
 En Linux puedes crear un archivo grande luego de comprobar borra:
 
@@ -689,11 +685,11 @@ No llenes el disco del todo. Hazlo con cuidado.
 
 ---
 
-# 7. Monitorizar CPU
+## 7. Monitorizar CPU
 
 La CPU también viene con las plantillas.
 
-## Comprobar en Linux
+### Comprobar en Linux
 
 En Zabbix:
 
@@ -710,7 +706,7 @@ Load average
 
 ---
 
-## Instalar herramienta de prueba
+### Instalar herramienta de prueba
 
 En cliente Linux:
 
@@ -733,7 +729,7 @@ Monitorización → Equipos → cliente-linux-01 → Gráficos
 
 ---
 
-## Iniciador de CPU ejemplo
+### Iniciador de CPU ejemplo
 
 ```text
 Nombre: CPU alta en cliente Linux
@@ -747,11 +743,11 @@ Esto se activaría si la CPU de usuario supera el 80% de media durante 5 minutos
 
 ---
 
-# 8. Monitorizar RAM
+## 8. Monitorizar RAM
 
 También suele venir por plantilla.
 
-## Comprobar en Linux
+### Comprobar en Linux
 
 En Zabbix:
 
@@ -766,7 +762,7 @@ Memory utilization
 Available memory
 ```
 
-## Prueba sencilla
+### Prueba sencilla
 
 No te recomiendo forzar mucho la RAM porque puedes bloquear la VM.
 
@@ -778,7 +774,7 @@ stress-ng --vm 1 --vm-bytes 512M --timeout 60s
 
 ---
 
-# 9. Monitorizar servicios de Windows
+## 9. Monitorizar servicios de Windows
 
 Para Windows, lo básico ya vendrá por la plantilla:
 
@@ -798,7 +794,7 @@ Procesos
 Servicios
 ```
 
-## Comprobar disco C:
+### Comprobar disco C:
 En Zabbix:
 
 ```text
@@ -814,7 +810,7 @@ C: Free space
 
 ---
 
-# 10. Resumen de comprobaciones
+## 10. Resumen de comprobaciones
 
 | Servicio       | Métrica Zabbix                  | Comprobación manual                                   | Prueba de fallo                                  |
 | -------------- | ---------------------------- | ----------------------------------------------------- | ------------------------------------------------ |
@@ -830,4 +826,9 @@ C: Free space
 | RAM Linux      | `vm.memory.size[...]`        | `free -h`                                             | `stress-ng --vm 1 --vm-bytes 512M --timeout 60s` |
 
 ---
-[4]: https://www.zabbix.com/documentation/current/en/manual/config/métricas/métricatypes/zabbix_agent?utm_source=chatgpt.com "1 Zabbix agent"
+# Fuentes utilizadas
+
+[1]: https://www.zabbix.com/documentation/current/en/manual/config/items/itemtypes/simple_checks "Simple checks"
+[2]: https://www.zabbix.com/documentation/current/en/manual/config/triggers/expression "Trigger expression"
+[3]: https://www.zabbix.com/documentation/current/en/manual/web_monitoring "Web monitoring"
+[4]: https://www.zabbix.com/documentation/current/en/manual/config/items/itemtypes/zabbix_agent "Zabbix agent"

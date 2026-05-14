@@ -38,13 +38,13 @@
 
 ## 1. Introducción
 
-<!--
-Rellena aquí:
-- De qué trata el proyecto.
-- Por qué elegiste Zabbix.
-- Qué problema quieres resolver.
-- Qué aporta la monitorización en una red o sistema.
--->
+Este proyecto consiste en aprender, instalar y configurar Zabbix en un entorno simulado mediante máquinas virtuales. La finalidad es crear un sistema de monitorización centralizado que permita supervisar diferentes equipos y servicios, comprobar su estado y detectar posibles fallos.
+
+Elegí Zabbix porque me pareció una herramienta muy completa y útil para la monitorización de servidores, servicios y equipos dentro de una red. Además, cuenta con bastante documentación, una comunidad amplia y muchas posibilidades de configuración, lo que la convierte en una buena opción.
+
+La monitorización aporta mucho valor en una red o sistema, ya que ayuda a detectar incidencias rápidamente, recibir alertas cuando algo falla y consultar gráficas. Esto facilita la administración de los equipos.
+
+Además, este proyecto también me sirve como aprendizaje personal, ya que en el futuro me gustaría aplicar Zabbix a un mini servidor que estoy montando en casa.
 
 ---
 
@@ -52,29 +52,26 @@ Rellena aquí:
 
 ### Objetivo principal
 
-<!--
-Rellena aquí el objetivo principal del proyecto.
--->
+
+el objetivo principal es montar un entorno monitorizado por zabbix con pruebas reales
+
 
 ### Objetivos específicos
 
-- [ ] <!-- Instalar y configurar el servidor Zabbix. -->
-- [ ] <!-- Añadir clientes Linux y Windows. -->
-- [ ] <!-- Monitorizar recursos del sistema. -->
-- [ ] <!-- Monitorizar servicios críticos. -->
-- [ ] <!-- Configurar alertas. -->
-- [ ] <!-- Crear dashboards. -->
-- [ ] <!-- Aplicar medidas de seguridad. -->
-- [ ] <!-- Configurar copias de seguridad. -->
-- [ ] <!-- Probar acceso externo seguro. -->
-
+- [Instalar y configurar el servidor Zabbix.]  
+- [Añadir clientes Linux y Windows.]  
+- [Monitorizar recursos del sistema.]
+- [Monitorizar servicios críticos.]  
+- [Configurar alertas.]  
+- [Crear dashboards. ]
+- [Aplicar medidas de seguridad]
+- [Configurar copias de seguridad.]  
+- [Probar acceso externo seguro.] 
 ---
 
 ## 3. Arquitectura del proyecto
 
-<!--
-Rellena aquí una explicación general de la arquitectura.
--->
+quise hacer una arquitectura sencilla ademas de que no puedo ampliarla mucho mas debido a las limitaciones de mi hardware
 
 ```text
 PC principal / móvil
@@ -97,7 +94,7 @@ Servidor Zabbix - Debian 13
 | `windows-cliente-02` | Windows | `192.168.1.30` | Cliente Windows monitorizado |
 
 <p align="center">
-  <img src="./zabbix/imagenes/conf-servidor/status-zabbix-server.jpg" alt="Estado del servidor Zabbix" width="700">
+  <img src="vacio" alt="Estado del servidor Zabbix" width="700">
 </p>
 
 ---
@@ -106,26 +103,21 @@ Servidor Zabbix - Debian 13
 
 | Tecnología | Uso en el proyecto |
 |---|---|
-| Zabbix Server | <!-- Explica su función. --> |
-| Zabbix Agent 2 | <!-- Explica su función. --> |
-| Debian 13 | <!-- Explica por qué lo usas como servidor. --> |
-| Ubuntu Server | <!-- Explica su uso como cliente Linux. --> |
-| Windows | <!-- Explica su uso como cliente monitorizado. --> |
-| MariaDB | <!-- Explica su función como base de datos. --> |
-| Nginx | <!-- Explica su función como servidor web. --> |
-| UFW / Firewall de Windows | <!-- Explica su función de seguridad. --> |
-| Telegram / Email | <!-- Explica las alertas. --> |
-| Tailscale | <!-- Explica el acceso externo. --> |
-| Termius | <!-- Explica la conexión SSH desde móvil. --> |
+| Zabbix Server | Es el componente principal del proyecto. Recoge la información de los equipos monitorizados permite gestionar la monitorización desde la interfaz web. |
+| Zabbix Agent 2 | Se instala en los clientes para enviar al servidor datos del sistema. |
+| Debian 13 |lo elegi por su estabilidad, compatibilidad con Zabbix y disponibilidad de paquetes actualizados. |
+| Ubuntu Server |  cliente monitorizado. |
+| Windows | Equipo cliente monitorizado. |
+| MariaDB | Base de datos donde Zabbix guarda la configuración, los hosts, las métricas recogidas, los eventos, los problemas y el historial de monitorización. |
+| Nginx | Servidor web para la interfaz web de Zabbix, desde la que se administra el sistema de monitorización. |
+| UFW / Firewall de Windows | permitiendo solo los puertos necesarios para Zabbix, SSH, HTTP/HTTPS y los agentes. |
+| Telegram / Email | seran los medios por los que enviare las alertas . |
+| Tailscale | Servicio VPN utilizado para acceder de forma segura al servidor Zabbix desde fuera de la red local sin abrir puertos directamente en el router. |
+| Termius | Aplicación utilizada para conectarse por SSH al servidor desde el móvil y poder realizar tareas de administración remota. |
 
 ---
 
 ## 5. Instalación del servidor Zabbix
-
-<!--
-Rellena aquí un resumen de la instalación del servidor.
-Puedes enlazar al archivo detallado.
--->
 
 📄 Documentación completa:
 
@@ -143,8 +135,9 @@ Puedes enlazar al archivo detallado.
 | `mariadb-server` | Base de datos |
 | `nginx` | Servidor web |
 
+
 <p align="center">
-  <img src="./zabbix/imagenes/conf-servidor/install.png" alt="Instalación de paquetes Zabbix" width="750">
+  <img src="../../imagenes/readme/servidor.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
 
 ---
@@ -162,9 +155,8 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 - [Configuración del cliente Linux](./zabbix/configuraciones/configuracion-basica-clientes-linux.md)
 
 <p align="center">
-  <img src="./zabbix/imagenes/con-linux/g.png" alt="Cliente Linux con ZBX en verde" width="750">
+  <img src="../../imagenes/readme/ubuntu_sin_fondo.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
-
 ### Cliente Windows
 
 📄 Documentación completa:
@@ -172,16 +164,12 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 - [Configuración del cliente Windows](./zabbix/configuraciones/configuracion-basica-cliente-windows.md)
 
 <p align="center">
-  <img src="./zabbix/imagenes/con-win/cap2.png" alt="Cliente Windows configurado en Zabbix" width="750">
+  <img src="../../imagenes/readme/pngwing.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
-
 ---
 
 ## 7. Monitorización de servicios
 
-<!--
-Rellena aquí qué servicios se monitorizan y por qué son importantes.
--->
 
 📄 Documentación completa:
 
@@ -200,14 +188,6 @@ Rellena aquí qué servicios se monitorizan y por qué son importantes.
 | CPU | Linux/Windows | `system.cpu.util[...]` | Medir carga |
 | RAM | Linux/Windows | `vm.memory.size[...]` | Medir memoria |
 | Disco | Linux/Windows | `vfs.fs.size[...]` | Medir almacenamiento |
-
-<p align="center">
-  <img src="./zabbix/imagenes/monitorizacionservicios/graficos-cpu.png" alt="Gráfica de CPU en Zabbix" width="750">
-</p>
-
-<p align="center">
-  <img src="./zabbix/imagenes/monitorizacionservicios/utilizacion.png" alt="Métricas de utilización de disco" width="750">
-</p>
 
 ---
 
@@ -228,6 +208,11 @@ No pongas tokens, contraseñas ni chat IDs reales.
 Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 ```
 
+<p align="center">
+  <img src="../../imagenes/readme/pp (1).png" alt="Instalación de paquetes Zabbix" width="450">
+</p>
+
+
 ### Medios configurados
 
 | Medio | Estado | Uso |
@@ -235,17 +220,11 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 | Telegram | <!-- Configurado / Pendiente --> | Avisos al móvil |
 | Correo electrónico | <!-- Configurado / Pendiente --> | Avisos por SMTP |
 
-<p align="center">
-  <img src="./zabbix/imagenes/alertas/noti-t1.png" alt="Notificación de Telegram recibida" width="500">
-</p>
 
 ---
 
 ## 9. Dashboards
 
-<!--
-Rellena aquí qué dashboards creaste y qué muestra cada uno.
--->
 
 📄 Documentación completa:
 
@@ -255,25 +234,22 @@ Rellena aquí qué dashboards creaste y qué muestra cada uno.
 
 | Dashboard | Contenido |
 |---|---|
-| Monitorización general ASIR | <!-- Problemas, disponibilidad, servicios, web, valores destacados. --> |
-| Recursos de sistemas ASIR | <!-- CPU, RAM, disco, red y recursos principales. --> |
+| Monitorización general ASIR |  Problemas, disponibilidad, servicios, web, valores destacados.  |
+| Recursos de sistemas ASIR | CPU, RAM, disco, red y recursos principales.|
 
 <p align="center">
-  <img src="./zabbix/imagenes/dashh/dashboard1.png" alt="Dashboard general de Zabbix" width="750">
+  <img src="../../imagenes/dashh/dasboard1.png" alt="Dashboard general de Zabbix" width="550">
 </p>
 
 <p align="center">
-  <img src="./zabbix/imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="750">
+  <img src="../../imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="550">
 </p>
 
 ---
 
 ## 10. Seguridad
 
-<!--
-Rellena aquí las medidas de seguridad aplicadas.
--->
-
+las medidas aplicadas en este apartado son muy basicas pero realmente para lo que buscamos es perfecto
 📄 Documentación completa:
 
 - [Seguridad del servidor Zabbix](./zabbix/configuraciones/seguridad.md)
@@ -282,47 +258,36 @@ Rellena aquí las medidas de seguridad aplicadas.
 
 | Medida | Estado |
 |---|---|
-| Cambio de contraseña de Admin | <!-- Hecho / Pendiente --> |
-| Revisión de usuario guest | <!-- Hecho / Pendiente --> |
-| Usuario administrador propio | <!-- Hecho / Pendiente --> |
-| Firewall UFW | <!-- Hecho / Pendiente --> |
-| Firewall Windows | <!-- Hecho / Pendiente --> |
-| HTTPS con certificado autofirmado | <!-- Hecho / Pendiente --> |
-| Backups | <!-- Hecho / Pendiente --> |
-| Acceso externo por Tailscale | <!-- Hecho / Pendiente --> |
+| Cambio de contraseña de Admin | Hecho |
+| Revisión de usuario guest |  Hecho  |
+| Usuario administrador propio |  Hecho |
+| Firewall UFW | Hecho  |
+| Firewall Windows |  Hecho  |
+| HTTPS con certificado autofirmado |  Hecho  |
+| Backups |Hecho |
+| Acceso externo por Tailscale | Hecho  |
 
 <p align="center">
-  <img src="./zabbix/imagenes/seggg/seguridad5.png" alt="Firewall UFW configurado" width="700">
+  <img src="../../imagenes/readme/j.png" alt="Firewall UFW configurado" width="500">
 </p>
 
 ---
 
 ## 11. Copias de seguridad
 
-<!--
-Rellena aquí cómo realizaste los backups.
--->
+los elementos mas importantes a respaldar:
 
-### Elementos respaldados
-
-- [ ] <!-- Base de datos Zabbix -->
-- [ ] <!-- Configuración de Zabbix -->
-- [ ] <!-- Configuración de Nginx -->
-- [ ] <!-- Configuración PHP -->
-- [ ] <!-- Repositorios -->
-- [ ] <!-- Scripts de alertas -->
-
-<p align="center">
-  <img src="./zabbix/imagenes/seggg/seguridad8.png" alt="Backup de Zabbix generado" width="700">
-</p>
+- [ Base de datos Zabbix ] 
+- [Configuración de Zabbix ] 
+- [ Configuración de Nginx] 
+- [Configuración PHP ] 
+- [ Repositorios] 
+- [ Scripts de alertas] 
 
 ---
 
 ## 12. Acceso externo
 
-<!--
-Rellena aquí cómo configuraste el acceso externo con Tailscale y Termius.
--->
 
 📄 Documentación completa:
 
@@ -339,16 +304,13 @@ https://IP_TAILSCALE_DEL_SERVIDOR
 ```
 
 <p align="center">
-  <img src="./zabbix/imagenes/remoto/tailscale3.png" alt="Servidor conectado a Tailscale" width="700">
+  <img src="../../imagenes/readme/re.png" alt="Firewall UFW configurado" width="500">
 </p>
 
 ---
 
 ## 13. Pruebas realizadas
 
-<!--
-Rellena aquí los resultados reales de las pruebas.
--->
 
 | Prueba | Equipo | Acción realizada | Resultado esperado | Resultado obtenido |
 |---|---|---|---|---|
@@ -380,16 +342,12 @@ Rellena aquí errores reales que hayas tenido durante el proyecto y cómo los so
 
 ## 15. Mejoras futuras
 
-<!--
-Rellena aquí posibles ampliaciones.
--->
-
-- [ ] <!-- Cifrado PSK entre servidor y agentes. -->
-- [ ] <!-- Monitorización avanzada de MariaDB. -->
-- [ ] <!-- Certificado válido con dominio y Let's Encrypt. -->
-- [ ] <!-- Integración con IA para análisis de alertas. -->
-- [ ] <!-- Más clientes o servicios monitorizados. -->
-- [ ] <!-- Automatización de backups con cron. -->
+- [Configurar cifrado PSK entre el servidor y los agentes para mejorar la seguridad. ] 
+- [ Añadir monitorización avanzada de MariaDB para revisar rendimiento, conexiones y consultas. ]
+- [Usar un certificado válido con dominio y Let's Encrypt para acceder por HTTPS. ] 
+- [Probar una integración con IA para ayudar a analizar alertas y posibles causas.] 
+- [ Añadir más clientes o servicios monitorizados para ampliar las pruebas. ]
+- [Automatizar las copias de seguridad con cron para hacerlas de forma periódica. ] 
 
 ---
 
@@ -404,9 +362,7 @@ Explica qué has conseguido, qué has aprendido y qué utilidad tiene.
 
 ## 17. Bibliografía
 
-<!--
-Añade aquí fuentes utilizadas.
--->
+
 
 - Documentación oficial de Zabbix: https://www.zabbix.com/documentation/current/
 - Descarga de Zabbix: https://www.zabbix.com/download
@@ -420,13 +376,7 @@ Añade aquí fuentes utilizadas.
 
 ## Autor
 
-<!--
-Rellena aquí tu nombre, ciclo y curso.
--->
-
 ```text
-Nombre:
-Ciclo:
-Centro:
-Curso:
+Ildefonso
+Estudiante de ASIR en el IES Rodrigo Caro
 ```

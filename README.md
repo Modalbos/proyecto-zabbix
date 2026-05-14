@@ -238,11 +238,11 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 | Recursos de sistemas ASIR | CPU, RAM, disco, red y recursos principales.|
 
 <p align="center">
-  <img src="../../imagenes/dashh/dasboard1.png" alt="Dashboard general de Zabbix" width="550">
+  <img src="zabbix/imagenes/dashh/dasboard1.png" alt="Dashboard general de Zabbix" width="550">
 </p>
 
 <p align="center">
-  <img src="../../imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="550">
+  <img src="zabbix/imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="550">
 </p>
 
 ---

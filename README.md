@@ -1,7 +1,7 @@
 # Proyecto ASIR - Monitorización de red y servicios con Zabbix
 
 <p align="center">
-  <img src="./imagenes/conf-servidor/zabbix6.jpg" alt="Panel principal de Zabbix" width="750">
+  <img src="./zabbix/imagenes/readme/portada.png" alt="Portada proyecto Zabbix" width="750">
 </p>
 
 <p align="center">
@@ -97,7 +97,7 @@ Servidor Zabbix - Debian 13
 | `windows-cliente-02` | Windows | `192.168.1.30` | Cliente Windows monitorizado |
 
 <p align="center">
-  <img src="./imagenes/conf-servidor/status-zabbix-server.jpg" alt="Estado del servidor Zabbix" width="700">
+  <img src="./zabbix/imagenes/conf-servidor/status-zabbix-server.jpg" alt="Estado del servidor Zabbix" width="700">
 </p>
 
 ---
@@ -129,7 +129,7 @@ Puedes enlazar al archivo detallado.
 
 📄 Documentación completa:
 
-- [Configuración del servidor Zabbix](./configuraciones/configuracion-servidor-zabbix.md)
+- [Configuración del servidor Zabbix](./zabbix/configuraciones/configuracion-servidor-zabbix.md)
 
 ### Componentes instalados
 
@@ -144,7 +144,7 @@ Puedes enlazar al archivo detallado.
 | `nginx` | Servidor web |
 
 <p align="center">
-  <img src="./imagenes/conf-servidor/install.png" alt="Instalación de paquetes Zabbix" width="750">
+  <img src="./zabbix/imagenes/conf-servidor/install.png" alt="Instalación de paquetes Zabbix" width="750">
 </p>
 
 ---
@@ -159,20 +159,20 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 
 📄 Documentación completa:
 
-- [Configuración del cliente Linux](./configuraciones/configuracion-basica-clientes-linux.md)
+- [Configuración del cliente Linux](./zabbix/configuraciones/configuracion-basica-clientes-linux.md)
 
 <p align="center">
-  <img src="./imagenes/con-linux/g.png" alt="Cliente Linux con ZBX en verde" width="750">
+  <img src="./zabbix/imagenes/con-linux/g.png" alt="Cliente Linux con ZBX en verde" width="750">
 </p>
 
 ### Cliente Windows
 
 📄 Documentación completa:
 
-- [Configuración del cliente Windows](./configuraciones/configuracion-basica-cliente-windows.md)
+- [Configuración del cliente Windows](./zabbix/configuraciones/configuracion-basica-cliente-windows.md)
 
 <p align="center">
-  <img src="./imagenes/con-win/cap2.png" alt="Cliente Windows configurado en Zabbix" width="750">
+  <img src="./zabbix/imagenes/con-win/cap2.png" alt="Cliente Windows configurado en Zabbix" width="750">
 </p>
 
 ---
@@ -185,7 +185,7 @@ Rellena aquí qué servicios se monitorizan y por qué son importantes.
 
 📄 Documentación completa:
 
-- [Monitorización de servicios](./configuraciones/monitorizacion.md)
+- [Monitorización de servicios](./zabbix/configuraciones/monitorizacion.md)
 
 ### Servicios monitorizados
 
@@ -202,11 +202,11 @@ Rellena aquí qué servicios se monitorizan y por qué son importantes.
 | Disco | Linux/Windows | `vfs.fs.size[...]` | Medir almacenamiento |
 
 <p align="center">
-  <img src="./imagenes/monitorizacionservicios/graficos-cpu.png" alt="Gráfica de CPU en Zabbix" width="750">
+  <img src="./zabbix/imagenes/monitorizacionservicios/graficos-cpu.png" alt="Gráfica de CPU en Zabbix" width="750">
 </p>
 
 <p align="center">
-  <img src="./imagenes/monitorizacionservicios/utilizacion.png" alt="Métricas de utilización de disco" width="750">
+  <img src="./zabbix/imagenes/monitorizacionservicios/utilizacion.png" alt="Métricas de utilización de disco" width="750">
 </p>
 
 ---
@@ -220,7 +220,7 @@ No pongas tokens, contraseñas ni chat IDs reales.
 
 📄 Documentación completa:
 
-- [Configuración de alertas](./configuraciones/configuraralertas.md)
+- [Configuración de alertas](./zabbix/configuraciones/configuraralertas.md)
 
 ### Flujo de alertas
 
@@ -236,7 +236,7 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 | Correo electrónico | <!-- Configurado / Pendiente --> | Avisos por SMTP |
 
 <p align="center">
-  <img src="./imagenes/alertas/noti-t1.png" alt="Notificación de Telegram recibida" width="500">
+  <img src="./zabbix/imagenes/alertas/noti-t1.png" alt="Notificación de Telegram recibida" width="500">
 </p>
 
 ---
@@ -249,7 +249,7 @@ Rellena aquí qué dashboards creaste y qué muestra cada uno.
 
 📄 Documentación completa:
 
-- [Dashboards](./configuraciones/dashboard.md)
+- [Dashboards](./zabbix/configuraciones/dashboards.md)
 
 ### Dashboards creados
 
@@ -259,11 +259,11 @@ Rellena aquí qué dashboards creaste y qué muestra cada uno.
 | Recursos de sistemas ASIR | <!-- CPU, RAM, disco, red y recursos principales. --> |
 
 <p align="center">
-  <img src="./imagenes/dashboard/dashboard1.png" alt="Dashboard general de Zabbix" width="750">
+  <img src="./zabbix/imagenes/dashh/dashboard1.png" alt="Dashboard general de Zabbix" width="750">
 </p>
 
 <p align="center">
-  <img src="./imagenes/dashboard/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="750">
+  <img src="./zabbix/imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="750">
 </p>
 
 ---
@@ -276,7 +276,7 @@ Rellena aquí las medidas de seguridad aplicadas.
 
 📄 Documentación completa:
 
-- [Mejoras de seguridad](./configuraciones/mejoras-seguridad.md)
+- [Seguridad del servidor Zabbix](./zabbix/configuraciones/seguridad.md)
 
 ### Medidas aplicadas
 
@@ -289,10 +289,10 @@ Rellena aquí las medidas de seguridad aplicadas.
 | Firewall Windows | <!-- Hecho / Pendiente --> |
 | HTTPS con certificado autofirmado | <!-- Hecho / Pendiente --> |
 | Backups | <!-- Hecho / Pendiente --> |
-| Acceso externo por VPN | <!-- Hecho / Pendiente --> |
+| Acceso externo por Tailscale | <!-- Hecho / Pendiente --> |
 
 <p align="center">
-  <img src="./imagenes/seguridad/seguridad5.png" alt="Firewall UFW configurado" width="700">
+  <img src="./zabbix/imagenes/seggg/seguridad5.png" alt="Firewall UFW configurado" width="700">
 </p>
 
 ---
@@ -313,7 +313,7 @@ Rellena aquí cómo realizaste los backups.
 - [ ] <!-- Scripts de alertas -->
 
 <p align="center">
-  <img src="./imagenes/seguridad/seguridad8.png" alt="Backup de Zabbix generado" width="700">
+  <img src="./zabbix/imagenes/seggg/seguridad8.png" alt="Backup de Zabbix generado" width="700">
 </p>
 
 ---
@@ -326,7 +326,7 @@ Rellena aquí cómo configuraste el acceso externo con Tailscale y Termius.
 
 📄 Documentación completa:
 
-- [Acceso externo con Tailscale](./configuraciones/configuracion-externa.md)
+- [Acceso externo con Tailscale](./zabbix/configuraciones/entrada-romota.md)
 
 ```text
 PC o móvil fuera de casa
@@ -339,7 +339,7 @@ https://IP_TAILSCALE_DEL_SERVIDOR
 ```
 
 <p align="center">
-  <img src="./imagenes/conexion-externa/tailscale3.png" alt="Servidor conectado a Tailscale" width="700">
+  <img src="./zabbix/imagenes/remoto/tailscale3.png" alt="Servidor conectado a Tailscale" width="700">
 </p>
 
 ---

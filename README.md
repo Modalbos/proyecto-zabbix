@@ -137,7 +137,7 @@ Servidor Zabbix - Debian 13
 
 
 <p align="center">
-  <img src="../../imagenes/readme/servidor.png" alt="Instalación de paquetes Zabbix" width="250">
+  <img src="./zabbix/imagenes/readme/servidor.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
 
 ---
@@ -155,7 +155,7 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 - [Configuración del cliente Linux](./zabbix/configuraciones/configuracion-basica-clientes-linux.md)
 
 <p align="center">
-  <img src="../../imagenes/readme/ubuntu_sin_fondo.png" alt="Instalación de paquetes Zabbix" width="250">
+  <img src="./zabbix/imagenes/readme/ubuntu_sin_fondo.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
 ### Cliente Windows
 
@@ -164,7 +164,7 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 - [Configuración del cliente Windows](./zabbix/configuraciones/configuracion-basica-cliente-windows.md)
 
 <p align="center">
-  <img src="../../imagenes/readme/pngwing.png" alt="Instalación de paquetes Zabbix" width="250">
+  <img src="./zabbix/imagenes/readme/pngwing.png" alt="Instalación de paquetes Zabbix" width="250">
 </p>
 ---
 
@@ -209,7 +209,7 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 ```
 
 <p align="center">
-  <img src="../../imagenes/readme/pp (1).png" alt="Instalación de paquetes Zabbix" width="450">
+  <img src="./zabbix/imagenes/readme/pp (1).png" alt="Instalación de paquetes Zabbix" width="450">
 </p>
 
 
@@ -268,7 +268,7 @@ las medidas aplicadas en este apartado son muy basicas pero realmente para lo qu
 | Acceso externo por Tailscale | Hecho  |
 
 <p align="center">
-  <img src="../../imagenes/readme/j.png" alt="Firewall UFW configurado" width="500">
+  <img src="./zabbix/imagenes/readme/j.png" alt="Firewall UFW configurado" width="500">
 </p>
 
 ---
@@ -304,7 +304,7 @@ https://IP_TAILSCALE_DEL_SERVIDOR
 ```
 
 <p align="center">
-  <img src="../../imagenes/readme/re.png" alt="Firewall UFW configurado" width="500">
+  <img src="./zabbix/imagenes/readme/re.png" alt="Firewall UFW configurado" width="500">
 </p>
 
 ---

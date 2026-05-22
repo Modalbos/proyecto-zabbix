@@ -490,7 +490,7 @@ tenemos dos niveles diferentes
 
 Para empezar, usare el nivel básico.
 
-- [metricas internas mariadb](./zabbix/configuraciones/monitorizacion-avanzada-mariadb-zabbix.md)
+- [metricas internas mariadb](./monitorizacion-avanzada-mariadb-zabbix.md)
 
 ---
 

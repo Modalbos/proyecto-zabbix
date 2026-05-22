@@ -490,6 +490,8 @@ tenemos dos niveles diferentes
 
 Para empezar, usare el nivel básico.
 
+- [metricas internas mariadb](./zabbix/configuraciones/monitorizacion_avanzada_mariadb.md)
+
 ---
 
 ### 4.1. Comprobación básica del puerto MariaDB

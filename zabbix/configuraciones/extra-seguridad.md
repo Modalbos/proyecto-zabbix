@@ -40,7 +40,7 @@ Antes de configurar PSK, se debe tener:
 - Icono ZBX funcionando correctamente antes de activar el cifrado.
 
 ## 6. Creación de la clave PSK en el agente
-![creacion-clave](creacion-clave.png)
+![creacion-clave](../imagenes/seggg/creacion-clave.png)
 ## 7. Protección del archivo PSK en linux
 chown zabbix:zabbix /etc/zabbix/zabbix_agent2.psk
 chmod 600 /etc/zabbix/zabbix_agent2.psk
@@ -56,7 +56,7 @@ TLSConnect=psk
 
 
 ## 9. Configuración del cifrado en Zabbix Web
-![cifrado-web](cifrado-web.png)
+![cifrado-web](../imagenes/seggg/cifrado-web.png)
 
 ## 10. Prueba con zabbix_get usando PSK
 

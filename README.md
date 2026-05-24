@@ -83,6 +83,7 @@ Servidor Zabbix - Debian 13
         |--- Cliente Linux - Ubuntu Server
         |
         |--- Cliente Windows - Windows
+        |--- cliente con pagina web y base de datos
 ```
 
 ### Equipos utilizados
@@ -90,6 +91,7 @@ Servidor Zabbix - Debian 13
 | Equipo | Sistema operativo | IP local | Función |
 |---|---|---:|---|
 | `zabbix-server` | Debian 13 | `192.168.1.10` | Servidor Zabbix |
+ `servidor-base-datos-web-extra` | Ubuntu Server | `192.168.1.11` | Cliente Linux con tienda-web imaginaria y base de datos monitorizada |
 | `cliente-linux-01` | Ubuntu Server | `192.168.1.20` | Cliente Linux monitorizado |
 | `windows-cliente-02` | Windows | `192.168.1.30` | Cliente Windows monitorizado |
 
@@ -144,10 +146,6 @@ Servidor Zabbix - Debian 13
 
 ## 6. Configuración de clientes
 
-<!--
-Rellena aquí un resumen de cómo añadiste los clientes.
--->
-
 ### Cliente Linux
 
 📄 Documentación completa:
@@ -193,11 +191,6 @@ Rellena aquí un resumen de cómo añadiste los clientes.
 
 ## 8. Alertas
 
-<!--
-Rellena aquí cómo configuraste las alertas y qué canales usaste.
-No pongas tokens, contraseñas ni chat IDs reales.
--->
-
 📄 Documentación completa:
 
 - [Configuración de alertas](./zabbix/configuraciones/configuraralertas.md)
@@ -217,8 +210,8 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 
 | Medio | Estado | Uso |
 |---|---|---|
-| Telegram | <!-- Configurado / Pendiente --> | Avisos al móvil |
-| Correo electrónico | <!-- Configurado / Pendiente --> | Avisos por SMTP |
+| Telegram | Configurado | Avisos al móvil |
+| Correo electrónico | Configurado | Avisos por SMTP |
 
 
 ---
@@ -238,11 +231,11 @@ Métrica → Iniciador → Problema → Acción → Medio de aviso → Usuario
 | Recursos de sistemas ASIR | CPU, RAM, disco, red y recursos principales.|
 
 <p align="center">
-  <img src="zabbix/imagenes/dashh/dasboard1.png" alt="Dashboard general de Zabbix" width="550">
+  <img src="./zabbix/imagenes/dashh/dasboard1.png" alt="Dashboard general de Zabbix" width="550">
 </p>
 
 <p align="center">
-  <img src="zabbix/imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="550">
+  <img src="./zabbix/imagenes/dashh/dashboard2.png" alt="Dashboard de recursos de Zabbix" width="550">
 </p>
 
 ---
@@ -312,25 +305,25 @@ https://IP_TAILSCALE_DEL_SERVIDOR
 ## 13. Pruebas realizadas
 
 
-| Prueba | Equipo | Acción realizada | Resultado esperado | Resultado obtenido |
+| Prueba | Equipo | Acción realizada |
 |---|---|---|---|---|
-| Ping caído | `cliente-linux-01` | <!-- Acción --> | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| SSH caído | `cliente-linux-01` | `sudo systemctl stop ssh` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| HTTP caído | `cliente-linux-01` | `sudo systemctl stop nginx` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| Escenario web caído | `cliente-linux-01` | `sudo systemctl stop nginx` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| Agente Linux caído | `cliente-linux-01` | `sudo systemctl stop zabbix-agent2` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| Agente Windows caído | `windows-cliente-02` | `Stop-Service "Zabbix Agent 2"` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| MariaDB caída | `zabbix-server` | `systemctl stop mariadb` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| CPU alta | `cliente-linux-01` | `stress-ng --cpu 2 --timeout 120s` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
-| Disco ocupado | `cliente-linux-01` | `fallocate -l 1G prueba_disco.img` | <!-- Resultado esperado --> | <!-- Resultado obtenido --> |
+| Ping caído | `cliente-linux-01` | `maquina apagada o sudo systemctl stop network.service ` | 
+| SSH caído | `cliente-linux-01` | `sudo systemctl stop ssh` | 
+| HTTP caído | `cliente-linux-01` | `sudo systemctl stop nginx` | 
+| Escenario web caído | `cliente-linux-01` | `sudo systemctl stop nginx` |
+| Agente Linux caído | `cliente-linux-01` | `sudo systemctl stop zabbix-agent2` | 
+| Agente Windows caído | `windows-cliente-02` | `Stop-Service "Zabbix Agent 2"` | 
+| MariaDB caída | `zabbix-server` | `systemctl stop mariadb` | 
+| CPU alta | `cliente-linux-01` | `stress-ng --cpu 2 --timeout 120s` |
+| Disco ocupado | `cliente-linux-01` | `fallocate -l 1G prueba_disco.img` | 
 
 ---
 
 ## 14. Problemas encontrados
 
-<!--
-Rellena aquí errores reales que hayas tenido durante el proyecto y cómo los solucionaste.
--->
+los unicos problemas que pude encontrarme fueron por equivocaciones mias al instalar o al modificar archivos 
+
+pondre problemas que posiblemente puedan aparecer
 
 | Problema | Causa | Solución |
 |---|---|---|
@@ -342,21 +335,15 @@ Rellena aquí errores reales que hayas tenido durante el proyecto y cómo los so
 
 ## 15. Mejoras futuras
 
-- [Configurar cifrado PSK entre el servidor y los agentes para mejorar la seguridad. ] 
-- [ Añadir monitorización avanzada de MariaDB para revisar rendimiento, conexiones y consultas. ]
 - [Usar un certificado válido con dominio y Let's Encrypt para acceder por HTTPS. ] 
 - [Probar una integración con IA para ayudar a analizar alertas y posibles causas.] 
-- [ Añadir más clientes o servicios monitorizados para ampliar las pruebas. ]
 - [Automatizar las copias de seguridad con cron para hacerlas de forma periódica. ] 
 
 ---
 
 ## 16. Conclusión
 
-<!--
-Rellena aquí una conclusión final del proyecto.
-Explica qué has conseguido, qué has aprendido y qué utilidad tiene.
--->
+con este proyecto e descubierto como funciona la organizacion de un servidor con diferentes servicios y como montarlos ademas de solucionar problemas que puedan tener e implementar diferentes niveles de seguridad junto con una buena organizacion de los servicios aunque debido a las limitaciones de mi hardware hay algunas cosas que tuve que hacerlas mas simplificadas para que todo pudiera correr en mi ordenador
 
 ---
 

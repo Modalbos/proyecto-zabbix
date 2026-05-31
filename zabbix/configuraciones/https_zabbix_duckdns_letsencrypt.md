@@ -71,6 +71,7 @@ También se puede comprobar desde terminal:
 ```bash
 curl ifconfig.me
 ```
+
 ---
 
 ## 3. Comprobar que DuckDNS apunta correctamente
@@ -456,8 +457,11 @@ Sirve para proyectos de pruebas y laboratorio
 ```
 
 ---
+## 19. Scripts para duckdns y demas
 
-## 19. Por qué se usó Let’s Encrypt
+1- actualizar la ip publica en duckdns
+
+## 20. Por qué se usó Let’s Encrypt
 
 Let’s Encrypt permite obtener certificados TLS gratuitos y reconocidos por los navegadores.
 
@@ -475,7 +479,7 @@ Integración sencilla con Certbot y Nginx
 
 ---
 
-## 20. Comparación con otras opciones
+## 21. Comparación con otras opciones
 
 | Opción | Ventajas | Desventajas |
 |---|---|---|
@@ -486,7 +490,7 @@ Integración sencilla con Certbot y Nginx
 
 ---
 
-## 21. Conclusión
+## 22. Conclusión
 
 Con esta configuración se consiguió acceder al frontend de Zabbix mediante HTTPS usando un dominio gratuito de DuckDNS y un certificado válido de Let’s Encrypt.
 
